@@ -1,6 +1,6 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
-* Студент: [Анатолий Долгов](https://up.htmlacademy.ru/javascript/11/user/150174).
+* Студент: [Женя Федяй]
 
 ---
 
