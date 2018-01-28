@@ -44,16 +44,16 @@ window.renderStatistics = function (ctx, names, times) {
   var initialX = 120; // px
   var initialY = 100; // px
 
-  for (var i = 0; i < times.length; i++) {
-    if (names[i] === 'Вы') {
+  for (var j = 0; j < names.length; j++) {
+    if (names[j] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       var randomNumber = Math.floor((Math.random() + 0.1) * 10) / 10;
       ctx.fillStyle = 'rgba(17, 23, 255, ' + randomNumber + ')';
     }
 
-    ctx.fillRect(initialX + indent * i, initialY, barWidth, step * times[i]);
+    ctx.fillRect(initialX + indent * j, initialY, barWidth, step * times[j]);
     ctx.fillStyle = 'black';
-    ctx.fillText(names[i], initialX + indent * i, histogramHeight + initialY + lineHeight);
+    ctx.fillText(names[j], initialX + indent * j, histogramHeight + initialY + lineHeight);
   }
 };
