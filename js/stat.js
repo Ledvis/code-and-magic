@@ -10,7 +10,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.shadowBlur = 5;
   ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
 
-  ctx.fillStyle = ctx.fillStyle = radialGradient;
+  ctx.fillStyle = radialGradient;
   ctx.fillRect(100, 10, 420, 270);
 
   ctx.shadowOffsetX = 0;
