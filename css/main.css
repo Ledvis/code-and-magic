@@ -621,17 +621,14 @@ input[type=radio]:checked + .review-mark-label {
   width: 500px;
 }
 
-.setup-user-name:valid {
+.setup-user-name:required:focus:valid {
   border: 0;
+  box-shadow: 0 0 10px green;
 }
 
-.setup-user-name:invalid {
-  border: 2px solid red;
-}
-
-.setup-user-name:focus {
-  border-bottom: solid 1px #000;
-  outline: none;
+.setup-user-name:required:focus:invalid {
+  border: 0;
+  box-shadow: 0 0 10px red;
 }
 
 .setup-close {
@@ -856,6 +853,7 @@ input[type=radio]:checked + .review-mark-label {
   margin: 0;
 
   position: absolute;
+  z-index: 1;
   left: 0;
   top: 0;
 }

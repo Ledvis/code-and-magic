@@ -2,7 +2,7 @@
 
 var fireballSize = 22;
 
-var getFireballSpeed = function(left) {
+var getFireballSpeed = function (left) {
   return left ? 5 : 2;
 };
 
@@ -10,18 +10,18 @@ var wizardSpeed = 3;
 var wizardWidth = 70;
 var wizardHeight;
 
-var getWizardHeight = function() {
+var getWizardHeight = function () {
   wizardHeight = wizardWidth * 1.337;
   return wizardHeight;
-}
+};
 
-var getWizardX = function(width) {
+var getWizardX = function (width) {
   return (width - wizardWidth) / 2;
-}
+};
 
-var getWizardY = function(height) {
+var getWizardY = function (height) {
   return height * 0.33;
-}
+};
 
 window.GameConstants = {
   Fireball: {
