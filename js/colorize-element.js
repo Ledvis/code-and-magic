@@ -1,23 +1,21 @@
 'use strict';
 
 (function () {
-  var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+  window.colorizeElement = function (event, array) {
+    var target = event.target;
 
-  window.colorize = {
-    mainWizard: window.dialog.userSetup.querySelector('.setup-wizard'),
-    fireball: window.dialog.userSetup.querySelector('.setup-fireball-wrap'),
-    onWizardClick: function (event) {
-      var target = event.target;
+    var fillElement = function (element) {
+      element.style.backgroundColor = array[window.util.getRandomNumber(array)];
+    };
 
-      if (target.classList.value === 'wizard-coat') {
-        target.style.fill = window.setup.WIZARD_COAT_COLORS[window.util.getRandomNumber(window.setup.WIZARD_COAT_COLORS)];
-      } else if (target.classList.value === 'wizard-eyes') {
-        target.style.fill = window.setup.WIZARD_EYES_COLORS[window.util.getRandomNumber(window.setup.WIZARD_EYES_COLORS)];
-      }
-    },
-    onFieballClick: function () {
-      this.fireball.style.backgroundColor = FIREBALL_COLORS[window.util.getRandomNumber(FIREBALL_COLORS)];
+    var changeElementBackground = function (element) {
+      element.style.fill = array[window.util.getRandomNumber(array)];
+    };
+
+    if (target.tagName.toLowerCase() === 'div') {
+      fillElement(target);
+    } else if (target.tagName.toLowerCase() === 'use') {
+      changeElementBackground(target);
     }
   };
 })();
-
