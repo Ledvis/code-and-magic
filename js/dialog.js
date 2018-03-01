@@ -44,6 +44,7 @@
   });
 
   window.dialog = {
-    userSetup: userSetup
+    userSetup: userSetup,
+    closePopup: closePopup
   };
 })();
