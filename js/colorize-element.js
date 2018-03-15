@@ -1,21 +1,14 @@
 'use strict';
 
 (function () {
-  window.colorizeElement = function (event, array) {
-    var target = event.target;
+  window.colorizeElement = function (event, colors) {
+    var element = event.target;
+    var color = colors[window.util.getRandomNumber(colors)];
 
-    var fillElement = function (element) {
-      element.style.backgroundColor = array[window.util.getRandomNumber(array)];
-    };
-
-    var changeElementBackground = function (element) {
-      element.style.fill = array[window.util.getRandomNumber(array)];
-    };
-
-    if (target.tagName.toLowerCase() === 'div') {
-      fillElement(target);
-    } else if (target.tagName.toLowerCase() === 'use') {
-      changeElementBackground(target);
+    if (element.tagName.toLowerCase() === 'div') {
+      element.style.backgroundColor = color;
+    } else if (element.tagName.toLowerCase() === 'use') {
+      element.style.fill = color;
     }
   };
 })();

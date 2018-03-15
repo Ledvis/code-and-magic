@@ -44,5 +44,5 @@
       window.dialog.userSetup.style.left = userSetupInitialPosition.x;
       window.dialog.userSetup.style.top = userSetupInitialPosition.y;
     }
-  }
+  };
 })();

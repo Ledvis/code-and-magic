@@ -17,8 +17,8 @@
     },
     // Accepts array and returns integer number depends on array length
     getRandomNumber: function (array) {
-      var item = Math.floor(Math.random() * array.length);
-      return item;
+      var index = Math.floor(Math.random() * array.length);
+      return index;
     }
   };
 })();

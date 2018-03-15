@@ -2,26 +2,14 @@
 
 (function () {
   var WIZZARDS_QUANTITY = 4;
-  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var similarListElement = document.querySelector('.setup-similar-list');
   var wizardsArray = [];
-
-  // Create wizard element by cloning template wizard element
-  var createWizard = function (wizard) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
-
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
-
-    return wizardElement;
-  };
 
   var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
 
     for (var j = 0; j < WIZZARDS_QUANTITY; j++) {
-      fragment.appendChild(createWizard(wizards[j]));
+      fragment.appendChild(window.render(wizards[j]));
     }
 
     similarListElement.appendChild(fragment);
@@ -31,22 +19,13 @@
     wizardsArray = wizards;
   };
 
-  var errorHandler = function (errorMessage) {
-    var node = document.createElement('div');
-
-    node.style = 'margin: 0, auto; text-align: center; background-color: rgba(0, 127, 235, 0.8);';
-    node.style.zIndex = '100';
-    node.style.position = 'absolute';
-    node.style.left = '0';
-    node.style.right = '0';
-    node.style.fontSize = '30px';
-
-    node.textContent = errorMessage;
-    document.body.insertAdjacentElement('afterbegin', node);
+  var succesFormHandler = function () {
+    window.dialog.closePopup();
+    window.notification.showInfo();
   };
 
   var onFormSubmit = function (event) {
-    window.backend.upload(new FormData(formElement), window.dialog.closePopup);
+    window.backend.upload(new FormData(formElement), succesFormHandler, window.notification.showError);
     event.preventDefault();
   };
 
@@ -54,7 +33,7 @@
 
   formElement.addEventListener('submit', onFormSubmit);
 
-  window.backend.download(successHandler, errorHandler);
+  window.backend.download(successHandler, window.notification.showError);
 
   window.setup = {
     // Big wizard click handler
