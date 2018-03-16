@@ -1,19 +1,19 @@
 'use strict';
 
 (function () {
-  var dialogHandle = window.dialog.userSetup.querySelector('.setup-user-pic');
+  var dialogHandle = window.dialog.setupWindow.querySelector('.setup-user-pic');
 
   var userSetupInitialPosition = {
-    x: window.dialog.userSetup.style.left,
-    y: window.dialog.userSetup.style.top
+    x: window.dialog.setupWindow.style.left,
+    y: window.dialog.setupWindow.style.top
   };
 
   dialogHandle.addEventListener('mousedown', function (event) {
     event.preventDefault();
 
     var startSetupCordinate = {
-      x: window.dialog.userSetup.offsetLeft,
-      y: window.dialog.userSetup.offsetTop
+      x: window.dialog.setupWindow.offsetLeft,
+      y: window.dialog.setupWindow.offsetTop
     };
 
     var innerShift = {
@@ -24,8 +24,8 @@
     var onMouseMove = function (eventMouseMove) {
       eventMouseMove.preventDefault();
 
-      window.dialog.userSetup.style.top = (eventMouseMove.clientY + innerShift.y) + 'px';
-      window.dialog.userSetup.style.left = (eventMouseMove.clientX + innerShift.x) + 'px';
+      window.dialog.setupWindow.style.top = (eventMouseMove.clientY + innerShift.y) + 'px';
+      window.dialog.setupWindow.style.left = (eventMouseMove.clientX + innerShift.x) + 'px';
     };
 
     var onMouseUp = function (eventMouseUp) {
@@ -41,8 +41,8 @@
 
   window.drag = {
     setUserSetupInitialPosition: function () {
-      window.dialog.userSetup.style.left = userSetupInitialPosition.x;
-      window.dialog.userSetup.style.top = userSetupInitialPosition.y;
+      window.dialog.setupWindow.style.left = userSetupInitialPosition.x;
+      window.dialog.setupWindow.style.top = userSetupInitialPosition.y;
     }
   };
 })();
