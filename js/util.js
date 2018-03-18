@@ -15,10 +15,9 @@
         action();
       }
     },
-    // Accepts array and returns integer number depends on array length
-    getRandomNumber: function (array) {
-      var index = Math.floor(Math.random() * array.length);
-      return index;
+    // Accepts array and returns random index depends on array length
+    getRandomIndex: function (arr) {
+      return Math.floor(Math.random() * arr.length);
     }
   };
 })();

@@ -1,9 +1,8 @@
 'use strict';
 
 (function () {
-  window.colorizeElement = function (event, colors) {
+  window.colorizeElement = function (event, color) {
     var element = event.target;
-    var color = colors[window.util.getRandomNumber(colors)];
 
     if (element.tagName.toLowerCase() === 'div') {
       element.style.backgroundColor = color;

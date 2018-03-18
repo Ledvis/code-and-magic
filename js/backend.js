@@ -8,7 +8,6 @@
   var initXHR = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-
     xhr.addEventListener('load', function () {
       var error;
 
@@ -28,7 +27,6 @@
         default:
           error = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
       }
-
       if (error) {
         onError(error);
       }
@@ -37,11 +35,9 @@
     xhr.addEventListener('error', function () {
       onError('Произошла ошибка соединения');
     });
-
     xhr.addEventListener('timeout', function () {
       onError('Запрос не успел выполнится за ' + xhr.timeout + 'мс');
     });
-
     xhr.timeout = XHR_TIMEOUT;
 
     return xhr;
@@ -54,7 +50,6 @@
       xhr.open('GET', SAVE_URL);
       xhr.send();
     },
-
     upload: function (data, onLoad, onError) {
       var xhr = initXHR(onLoad, onError);
 
