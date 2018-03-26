@@ -4,21 +4,28 @@
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var similarListElement = document.querySelector('.setup-similar-list');
 
+  var SmallWizard = function (name, colorCoat, colorEyes) {
+    this.name = name;
+    this.colorCoat = colorCoat;
+    this.colorEyes = colorEyes;
+  };
+
   // Create wizard element by cloning template wizard element
   var createWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
+    var wizardInstance = new SmallWizard(wizard.name, wizard.colorCoat, wizard.colorEyes);
+    wizardElement.querySelector('.setup-similar-label').textContent = wizardInstance.name;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizardInstance.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizardInstance.colorEyes;
     return wizardElement;
   };
 
-  // Insert similar wizards to the DOM element
+  // Get sorted wizard by rank and insert them in DOM
   var showWizards = function (data) {
     var fragment = document.createDocumentFragment();
     similarListElement.innerHTML = '';
-    for (var j = 0; j < window.wizardConsts.QUANTITY; j++) {
-      fragment.appendChild(createWizard(data[j]));
+    for (var i = 0; i < window.wizardConsts.QUANTITY; i++) {
+      fragment.appendChild(createWizard(data[i]));
     }
     similarListElement.appendChild(fragment);
     window.dialog.setupWindow.querySelector('.setup-similar').classList.remove('hidden');

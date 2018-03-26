@@ -7,27 +7,27 @@
   var eyesColor;
   var loadedWizards = [];
 
-  var wizard = {
-    onEyesChange: function (color) {
+  // Big wizard click handlers
+  var bigWizard = {
+    changeEyesColor: function (color) {
       eyesColor = color;
       window.debounce(updateWizards);
     },
-    onCoatChange: function (color) {
+    changeCoatColor: function (color) {
       coatColor = color;
       window.debounce(updateWizards);
     }
   };
 
-  // User wizard click handler
   var onWizardClick = function (event) {
     if (event.target.classList.value === 'wizard-coat') {
       var newCoatColor = window.wizardConsts.COAT_COLORS[window.util.getRandomIndex(window.wizardConsts.COAT_COLORS)];
       window.colorizeElement(event, newCoatColor);
-      wizard.onCoatChange(newCoatColor);
+      bigWizard.changeCoatColor(newCoatColor);
     } else if (event.target.classList.value === 'wizard-eyes') {
       var newEyesColor = window.wizardConsts.EYES_COLORS[window.util.getRandomIndex(window.wizardConsts.EYES_COLORS)];
       window.colorizeElement(event, newEyesColor);
-      wizard.onEyesChange(newEyesColor);
+      bigWizard.changeEyesColor(newEyesColor);
     }
   };
 

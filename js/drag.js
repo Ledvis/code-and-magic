@@ -7,7 +7,7 @@
     y: window.dialog.setupWindow.style.top
   };
 
-  windowHandle.addEventListener('mousedown', function (event) {
+  var onMouseDownClick = function (event) {
     event.preventDefault();
 
     var startSetupCordinate = {
@@ -33,7 +33,9 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  });
+  };
+
+  windowHandle.addEventListener('mousedown', onMouseDownClick);
 
   window.drag = {
     setUserSetupInitialPosition: function () {
