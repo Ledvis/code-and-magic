@@ -868,3 +868,14 @@ input[type=radio]:checked + .review-mark-label {
   left: 0;
   top: 0;
 }
+
+.notification {
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  font-size: 30px;
+  text-align: center;
+  background-color: rgba(0, 127, 235, 0.8);
+}

@@ -4,6 +4,12 @@
   var SAVE_URL = 'https://js.dump.academy/code-and-magick/data';
   var LOAD_URL = 'https://js.dump.academy/code-and-magick';
   var XHR_TIMEOUT = 3000;
+  var Code = {
+    OK: 200,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404
+  };
 
   var initXHR = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -12,16 +18,16 @@
       var error;
 
       switch (xhr.status) {
-        case 200:
+        case Code.OK:
           onLoad(xhr.response);
           break;
-        case 400:
+        case Code.BAD_REQUEST:
           error = 'Неверный запрос';
           break;
-        case 401:
+        case Code.UNAUTHORIZED:
           error = 'Пользователь не авторизирован';
           break;
-        case 404:
+        case Code.NOT_FOUND:
           error = 'Ничего не найдено';
           break;
         default:
