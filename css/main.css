@@ -837,11 +837,8 @@ input[type=radio]:checked + .review-mark-label {
 
 .upload {
   position: relative;
-
   display: inline-block;
-
   box-sizing: border-box;
-
   width: 40px;
   min-width: 40px;
   max-width: 40px;
@@ -851,9 +848,7 @@ input[type=radio]:checked + .review-mark-label {
 .upload .setup-user-pic {
   display: block;
   margin: 0;
-
   position: absolute;
-  z-index: 1;
   left: 0;
   top: 0;
 }
@@ -867,4 +862,15 @@ input[type=radio]:checked + .review-mark-label {
 
   left: 0;
   top: 0;
+}
+
+.notification {
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  font-size: 30px;
+  text-align: center;
+  background-color: rgba(0, 127, 235, 0.8);
 }

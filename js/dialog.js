@@ -1,50 +1,42 @@
 'use strict';
 
 (function () {
-  var userSetup = document.querySelector('.setup');
-  var userSetupOpen = document.querySelector('.setup-open');
-  var userSetupClose = userSetup.querySelector('.setup-close');
-  var mainWizardElement = userSetup.querySelector('.setup-wizard');
-  var fireballElement = userSetup.querySelector('.setup-fireball-wrap');
-
-  var openPopup = function () {
-    userSetup.classList.remove('hidden');
+  var userSetupWindow = document.querySelector('.setup');
+  var userSetupOpenElement = document.querySelector('.setup-open');
+  var userSetupCloseElement = userSetupWindow.querySelector('.setup-close');
+  var openWindow = function () {
+    userSetupWindow.classList.remove('hidden');
     document.addEventListener('keydown', onSetupEscPress);
-    mainWizardElement.addEventListener('click', window.setup.onWizardClick);
-    fireballElement.addEventListener('click', window.setup.onFireballClick);
+    window.wizard.mainWizard.addEventListener('click', window.wizard.onWizardClick);
+    window.wizard.fireball.addEventListener('click', window.wizard.onFireballClick);
     window.drag.setUserSetupInitialPosition();
   };
-
-  var closePopup = function () {
-    userSetup.classList.add('hidden');
+  var closeWindow = function () {
+    userSetupWindow.classList.add('hidden');
     document.removeEventListener('keydown', onSetupEscPress);
-    mainWizardElement.removeEventListener('click', window.setup.onWizardClick);
-    fireballElement.removeEventListener('click', window.setup.onFireballClick);
+    window.wizard.mainWizard.removeEventListener('click', window.wizard.onWizardClick);
+    window.wizard.fireball.removeEventListener('click', window.wizard.onFireballClick);
   };
-
   // ESC key handler
   var onSetupEscPress = function (event) {
-    window.util.isEscEvent(event, closePopup);
+    window.util.isEscEvent(event, closeWindow);
   };
 
   // Click on user photo remove hidden class from popup window
-  userSetupOpen.addEventListener('click', openPopup);
-
+  userSetupOpenElement.addEventListener('click', openWindow);
   // Click on cross icon add class hidden to popup window
-  userSetupClose.addEventListener('click', closePopup);
-
+  userSetupCloseElement.addEventListener('click', closeWindow);
   // Check wheater ESC button is pressed when popus is opened
-  userSetupOpen.addEventListener('keydown', function (event) {
-    window.util.isEnterEvent(event, openPopup);
+  userSetupOpenElement.addEventListener('keydown', function (event) {
+    window.util.isEnterEvent(event, openWindow);
   });
-
   // Check wheater ENTER button is pressed on cross icon when popus is opened
-  userSetupClose.addEventListener('keydown', function (event) {
-    window.util.isEnterEvent(event, closePopup);
+  userSetupCloseElement.addEventListener('keydown', function (event) {
+    window.util.isEnterEvent(event, closeWindow);
   });
 
   window.dialog = {
-    userSetup: userSetup,
-    closePopup: closePopup
+    setupWindow: userSetupWindow,
+    closeWindow: closeWindow
   };
 })();

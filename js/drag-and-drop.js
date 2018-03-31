@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  var shopElement = window.dialog.userSetup.querySelector('.setup-artifacts-shop');
-  var artifactsElement = window.dialog.userSetup.querySelector('.setup-artifacts');
+  var shopElement = window.dialog.setupWindow.querySelector('.setup-artifacts-shop');
+  var artifactsElement = window.dialog.setupWindow.querySelector('.setup-artifacts');
   var dragItem = null;
 
   var onStarDragStart = function (event) {

@@ -1,17 +1,7 @@
 'use strict';
 
 (function () {
-  var userNameInput = window.dialog.userSetup.querySelector('.setup-user-name');
-
-  userNameInput.addEventListener('invalid', function () {
-    showCustomError();
-  });
-
-  // Falback custom 'tooShort' error message for Edge Browser
-  userNameInput.addEventListener('input', function () {
-    showFallbackCustomShortError();
-  });
-
+  var userNameInput = window.dialog.setupWindow.querySelector('.setup-user-name');
   var showCustomError = function () {
     if (userNameInput.validity.valueMissing) {
       userNameInput.setCustomValidity('Обязательное поле');
@@ -25,7 +15,6 @@
       userNameInput.setCustomValidity('');
     }
   };
-
   var showFallbackCustomShortError = function () {
     if (window.dialog.userNameInput.value.length < 2) {
       window.dialog.userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
@@ -33,4 +22,12 @@
       window.dialog.userNameInput.setCustomValidity('');
     }
   };
+
+  userNameInput.addEventListener('invalid', function () {
+    showCustomError();
+  });
+  // Falback custom 'tooShort' error message for Edge Browser
+  userNameInput.addEventListener('input', function () {
+    showFallbackCustomShortError();
+  });
 })();

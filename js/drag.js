@@ -1,19 +1,21 @@
 'use strict';
 
 (function () {
-  var dialogHandle = window.dialog.userSetup.querySelector('.setup-user-pic');
+  var windowHandler = window.dialog.setupWindow.querySelector('.upload');
+  var dragged;
 
-  var userSetupInitialPosition = {
-    x: window.dialog.userSetup.style.left,
-    y: window.dialog.userSetup.style.top
+  var windowSetupInitialPosition = {
+    x: window.dialog.setupWindow.style.left,
+    y: window.dialog.setupWindow.style.top
   };
 
-  dialogHandle.addEventListener('mousedown', function (event) {
+  var onMouseDownClick = function (event) {
     event.preventDefault();
 
+    dragged = false;
     var startSetupCordinate = {
-      x: window.dialog.userSetup.offsetLeft,
-      y: window.dialog.userSetup.offsetTop
+      x: window.dialog.setupWindow.offsetLeft,
+      y: window.dialog.setupWindow.offsetTop
     };
 
     var innerShift = {
@@ -21,15 +23,24 @@
       y: startSetupCordinate.y - event.clientY
     };
 
-    var onMouseMove = function (eventMouseMove) {
-      eventMouseMove.preventDefault();
+    var onMouseMove = function (moveEvent) {
+      moveEvent.preventDefault();
+      dragged = true;
 
-      window.dialog.userSetup.style.top = (eventMouseMove.clientY + innerShift.y) + 'px';
-      window.dialog.userSetup.style.left = (eventMouseMove.clientX + innerShift.x) + 'px';
+      window.dialog.setupWindow.style.top = (moveEvent.clientY + innerShift.y) + 'px';
+      window.dialog.setupWindow.style.left = (moveEvent.clientX + innerShift.x) + 'px';
     };
 
-    var onMouseUp = function (eventMouseUp) {
-      eventMouseUp.preventDefault();
+    var onMouseUp = function (upEvent) {
+      upEvent.preventDefault();
+
+      if (dragged) {
+        var onClickPreventDefault = function (clickEvent) {
+          clickEvent.preventDefault();
+          windowHandler.removeEventListener('click', onClickPreventDefault);
+        };
+        windowHandler.addEventListener('click', onClickPreventDefault);
+      }
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
@@ -37,12 +48,14 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  });
+  };
+
+  windowHandler.addEventListener('mousedown', onMouseDownClick);
 
   window.drag = {
     setUserSetupInitialPosition: function () {
-      window.dialog.userSetup.style.left = userSetupInitialPosition.x;
-      window.dialog.userSetup.style.top = userSetupInitialPosition.y;
+      window.dialog.setupWindow.style.left = windowSetupInitialPosition.x;
+      window.dialog.setupWindow.style.top = windowSetupInitialPosition.y;
     }
-  }
+  };
 })();
