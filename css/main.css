@@ -837,11 +837,8 @@ input[type=radio]:checked + .review-mark-label {
 
 .upload {
   position: relative;
-
   display: inline-block;
-
   box-sizing: border-box;
-
   width: 40px;
   min-width: 40px;
   max-width: 40px;
@@ -851,7 +848,6 @@ input[type=radio]:checked + .review-mark-label {
 .upload .setup-user-pic {
   display: block;
   margin: 0;
-
   position: absolute;
   left: 0;
   top: 0;
